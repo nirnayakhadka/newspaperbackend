@@ -8,7 +8,7 @@ const newsRoutes = require('./src/routes/newsRoutes');
 const artsandcultureRoutes = require('./src/routes/artsandcultureRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+const interviewRoutes = require('./src/routes/interviewRoutes');
 // Serve static files (images, frontend, etc.)
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads')); // Important: serve uploaded images!
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 app.use('/api/main', mainRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/artsandculture', artsandcultureRoutes);
-
+app.use('/api/interviews', interviewRoutes);
 // Global error handler (catches invalid JSON gracefully)
 app.use((err, req, res, next) => {
   if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
